@@ -1,0 +1,507 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* Set width to full viewport width */
+    height: 100vh;
+    overflow-x: hidden;
+    /* background-color: rgb(30, 29, 29); */
+
+
+    background-color: #0a121c;
+
+}
+
+
+nav {
+    background-color: rgba(0, 0, 0, 0.599);
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+
+
+  
+.logo {
+    height: 100%;
+    opacity: 75%;
+    margin-right: auto; 
+  }
+
+  .info {
+    font-family: 'Chakra Petch', sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    font-size: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.361);
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin: 0 15% 20px 15%; /* Responsive margin using percentages */
+    animation: fadeIn 4s ease-in-out forwards;
+
+  
+  }
+
+
+@media (min-width: 768px) {
+    .info {
+        font-size: 15px;
+    }
+    #toggle-btn {
+      font-size: 15px;
+    }
+    .prompt-content {
+      font-size: 15px;
+    }
+    body {
+      background-image: url('/images/background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: #0a121c;
+      background-attachment: fixed;
+    }
+}
+
+@media (min-width: 1024px) {
+    .info {
+        font-size: 20px;
+    }
+    #toggle-btn {
+      font-size: 20px;
+    }
+    .prompt-content {
+      font-size: 20px;
+    }
+    body {
+      background-image: url('/images/background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: #0a121c;
+      background-attachment: fixed;
+    }
+}
+
+  
+  
+  
+footer {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeIn2 {
+    0% {
+      opacity: 0;
+
+    }
+    100% {
+      opacity: 1;
+
+    }
+  }
+
+  
+  h1 {
+    animation: fadeIn 2s ease-in-out forwards;
+    text-align: center;
+    font-family: 'Tilt Prism', cursive;
+    color: white;
+    font-size: 30px;
+
+
+  }
+
+  h3{
+    font-family: 'Chakra Petch', sans-serif;
+    color: rgba(255, 255, 255);
+    animation: fadeIn 4s ease-in-out forwards;
+    text-align: center;
+    font-size: 15px;
+
+  }
+
+  .carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    animation: fadeIn2 4s ease-in-out forwards;
+
+    max-width: 100%; /* Ensure the carousel doesn't exceed the viewport width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    padding: 10px;
+    margin: 0 15% 20px 15%; /* Responsive margin using percentages */
+
+
+}
+
+.carousel-slide {
+  flex: 0 0 auto; /* Ensure each slide has a fixed width */
+  margin: 0 5px; /* Add some spacing between slides */
+}
+
+
+  
+
+
+
+.carousel-slide img {
+  width: 350px;
+  height: 350px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0.95;
+}
+
+
+@media (min-width: 768px) {
+  .carousel-slide img {
+      width: 400px;
+      height: 400px;
+  }
+  h1{
+    font-size: 40;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  nav {
+    height: 70px;
+  }
+  /* .scrollable-list {
+    width: 500px;
+  } */
+
+}
+
+@media (min-width: 1024px) {
+  .carousel-slide img {
+      width: 450px;
+      height: 450px;
+  }
+  h1 {
+    font-size: 50px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  nav {
+    height: 80px;
+  }
+  /* .scrollable-list {
+    width: 600px;
+  } */
+}
+
+
+
+
+#toggle-btn {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.8);
+  animation: fadeIn 4s ease-in-out forwards;
+
+
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
+
+  border: none;
+  border-radius: 15px;
+
+  margin-bottom: 5px;
+
+}
+
+#toggle-btn:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgba(255, 255, 255);
+}
+
+#toggle-btn:active {
+  font-size: 22px;
+}
+  
+.prompt-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 5px;
+}
+
+.prompt-title {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  color: rgba(255, 255, 255);
+}
+
+.prompt-content {
+  font-size: 14px;
+  margin-top: 5px;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(255, 255, 255);
+}
+
+.scrollable-list {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  height: 25px;
+  overflow-y: scroll;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255);
+  font-family: 'Chakra Petch', sans-serif;
+  margin: 5px;
+  max-width: 300px; /* Limit the maximum width of the list */
+  white-space: nowrap; /* Prevent line breaks in list items */
+  animation: fadeIn 4s ease-in-out forwards;
+}
+
+.prompt-list-item {
+  cursor: pointer;
+}
+
+.instructions {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255);
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 14px;
+  font-family: 'Chakra Petch', sans-serif;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  margin: 0 auto;
+  animation: fadeIn 4s ease-in-out forwards;
+}
+#connect-btn, #disconnect-btn {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.8);
+  animation: fadeIn 4s ease-in-out forwards;
+
+
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
+
+  border: none;
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+#connect-btn, #disconnect-btn:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgba(255, 255, 255);
+}
+.connect-btn, #disconnect-btn:active {
+  font-size: 22px;
+}
+
+#wallet-address {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(255, 255, 255);
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+#check-nft-btn {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.8);
+  animation: fadeIn 4s ease-in-out forwards;
+
+
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
+
+  border: none;
+  border-radius: 15px;
+  margin-top: 5px;
+
+}
+
+#check-nft-btn:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgba(255, 255, 255);
+}
+
+#check-nft-btn:active {
+  font-size: 22px;
+}
+
+#prompt-btn {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.8);
+  animation: fadeIn 4s ease-in-out forwards;
+
+
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
+
+  border: none;
+  border-radius: 15px;
+
+
+  text-decoration: none;
+
+  margin-bottom: 5px;
+
+}
+
+#prompt-btn:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgba(255, 255, 255);
+  text-decoration: none;
+}
+
+#prompt-btn:active {
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.space {
+  font-size: 20px;
+  color: #0a121c00;
+  background-color: #0a121c00;
+  opacity: 0;
+}
+
+.mint-btn {
+  display: block;
+
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.8);
+  animation: fadeIn 4s ease-in-out forwards;
+  margin-left: auto;
+  margin-right: 10px;
+  padding: 15px 25px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  margin-top: 5px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 15px;
+
+
+  text-decoration: none;
+
+  margin-bottom: 5px;
+
+}
+
+.mint-btn:hover {
+  background-color: rgb(75, 75, 75);
+  color: rgba(255, 255, 255);
+  text-decoration: none;
+}
+
+.mint-btn:active {
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  font-family: 'Chakra Petch', sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.361);
+  text-decoration: none;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  margin: 0 15% 20px 15%; /* Responsive margin using percentages */
+  animation: fadeIn 4s ease-in-out forwards;
+
+}
+
+.section {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.361);
+
+}
+
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-left: 1.5em; /* Adjust the indentation as needed */
+}
+
+

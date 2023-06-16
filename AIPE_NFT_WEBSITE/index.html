@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="js/scripts.js"></script>
+    <script src="js/web3script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Orbitron&family=Tilt+Prism&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <title>AIPE NFT</title>
+    <script>
+$(document).ready(function() {
+  // Hide the carousel container initially
+  $("#carouselContainer").hide();
+
+
+  // jQuery code to show and hide the carousel when the button is clicked
+  $("#toggle-btn").click(function() {
+    $("#carouselContainer").toggle();
+    if ($("#carouselContainer").is(":visible")) {
+      startCarousel(); // Start the carousel when it becomes visible
+    } else {
+      stopCarousel(); // Stop the carousel when it becomes hidden
+    }
+  });
+
+  let slideIndex = 0;
+  let intervalId;
+
+  function startCarousel() {
+    if (intervalId) {
+      // If the carousel is already running, do nothing
+      return;
+    }
+    intervalId = setInterval(showSlides, 4000);
+  }
+
+  function stopCarousel() {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+
+  function showSlides() {
+    let slides = $(".carousel-slide");
+    let slidesPerPage = getSlidesPerPage();
+    let totalSlides = slides.length;
+
+    slides.hide();
+
+    let startIndex = slideIndex % totalSlides;
+    let endIndex = (slideIndex + slidesPerPage) % totalSlides;
+
+    if (endIndex < startIndex) {
+      // Wrap around to the beginning
+      for (let i = startIndex; i < totalSlides; i++) {
+        slides.eq(i).show();
+      }
+      for (let i = 0; i < endIndex; i++) {
+        slides.eq(i).show();
+      }
+    } else {
+      // Display the slides within the range
+      for (let i = startIndex; i < endIndex; i++) {
+        slides.eq(i).show();
+      }
+    }
+
+    slideIndex++;
+    if (slideIndex >= totalSlides) {
+      slideIndex = 0;
+    }
+  }
+
+  function getSlidesPerPage() {
+    if (window.innerWidth >= 1024) {
+      return 2; // 3 slides per page for computers
+    } else if (window.innerWidth >= 768) {
+      return 2; // 2 slides per page for tablets
+    } else {
+      return 1; // 1 slide per page for mobile
+    }
+  }
+
+  function prevSlide() {
+    slideIndex--;
+    if (slideIndex < 0) {
+      slideIndex = $(".carousel-slide").length - 1;
+    }
+    showSlides();
+  }
+
+  function nextSlide() {
+    slideIndex++;
+    if (slideIndex >= $(".carousel-slide").length) {
+      slideIndex = 0;
+    }
+    showSlides();
+  }
+
+  $(window).resize(function() {
+    slideIndex = 0;
+    showSlides();
+  });
+});
+  </script>
+</head>
+<body>
+  <nav>
+    <img class="logo"; src="/images/favicon.png" alt="">
+
+
+      <button class="mint-btn"><a href="https://ipfs-2.thirdwebcdn.com/ipfs/QmZG9dPDYCpTuzM3mVvdtmpjqwCbhErPipNvT945QqzWHk?contract=0x392e5F7918d31A84e4FF6e1DdCc4aA600378a295&chain=%7B%22name%22%3A%22Ethereum+Mainnet%22%2C%22chain%22%3A%22ETH%22%2C%22rpc%22%3A%5B%22https%3A%2F%2Fethereum.rpc.thirdweb.com%2F5a9bc94b87f7cbbbfbbc234bf1e07f0adf5f3cf3012c9f26f9fc9820d64df93a%22%5D%2C%22nativeCurrency%22%3A%7B%22name%22%3A%22Ether%22%2C%22symbol%22%3A%22ETH%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22eth%22%2C%22chainId%22%3A1%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22ethereum%22%7D&theme=dark&primaryColor=purple" style="text-decoration: none; color: inherit;">Mint</a></button>
+
+
+
+
+
+  </nav>
+
+  <main>
+    <h1>AIPE</h1>
+      
+    <h3>Artificial. Intelligence. Prompt. Engineering.</h3>
+
+
+
+    <p class="info">AIPE is a collection of exclusive NFTs meticulously crafted from over 40 diverse prompts, utilizing the AI image generator Mid Journey. Each NFT is a fusion of artistic styles, resulting in a visually stunning and intellectually captivating array of artwork.
+
+        Within this extraordinary collection, you'll discover a plethora of mediums. Immerse yourself in the mesmerizing beauty of photography, the delicate artistry of embroidery, the enchanting allure of holographic imagery, and the captivating charm of illustrations.
+        
+        Delve into a world of fascinating characters, intriguing objects, captivating scenes, majestic animals, and so much more. Each image tells a story, evokes emotions, and invites viewers to embark on a visual journey of discovery and imagination. 
+    </p>
+
+
+
+
+
+
+    <div class="container">
+      <div class="section">
+        <h2>NFT Use Cases</h2>
+        <ul>
+          <li>Access to 100+ ChatGPT & Mid Journey Prompts</li>
+          <li>Profile Pictures</li>
+          <li>Cover Art</li>
+          <li>Banners</li>
+          <li>Physical Art</li>
+          <li>Clothing Design</li>
+        </ul>
+      </div>
+      
+      <div class="section">
+        <h2>Prompts Title Preview</h2>
+        <ul>
+          <li>Programmer GPT</li>
+          <li>Graphic Designer (GPT)</li>
+          <li>Author GPT</li>
+          <li>Crypto Analysis Tool (GPT)</li>
+          <li>Passive Income Tool (GPT)</li>
+          <li>Dapper Animal Portraits (MJ)</li>
+          <li>3D Blender Render (MJ)</li>
+          <li>Holographic Decorative Art (MJ)</li>
+        </ul>
+      </div>
+      
+      <div class="section">
+        <h2>Tokenomics</h2>
+        <ul>
+          <li>Supply: 440</li>
+          <li>Price: 0.05 ETH</li>
+          <li>Max Claim Per Wallet: None</li>
+        </ul>
+      </div>
+    </div>
+
+    <button id="toggle-btn">Preview Collection</button>
+
+
+
+    <div id="carouselContainer" class="carousel-container">
+        <div class="carousel-slide">
+            <img src="/images/image1.png" alt="NFT Image 1">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image2.png" alt="NFT Image 2">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image3.png" alt="NFT Image 3">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image4.png" alt="NFT Image 4">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image5.png" alt="NFT Image 5">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image6.png" alt="NFT Image 6">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image7.png" alt="NFT Image 7">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image8.png" alt="NFT Image 8">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image9.png" alt="NFT Image 9">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image10.png" alt="NFT Image 10">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image11.png" alt="NFT Image 11">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image12.png" alt="NFT Image 12">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image13.png" alt="NFT Image 13">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image14.png" alt="NFT Image 14">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image15.png" alt="NFT Image 15">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image16.png" alt=" NFT Image 16">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image17.png" alt="NFT Image 17">
+        </div>
+        <div class="carousel-slide">
+            <img src="/images/image18.png" alt="NFT Image 18">
+        </div>
+    </div>
+    <button id="prompt-btn"><a href="prompts.html" style="text-decoration: none; color: inherit;">Access Prompts</a></button>
+
+    
+    <button class="space"></button>
+  </main> 
+  
+
+
+
+
+  
+  
+</body>
+</html>

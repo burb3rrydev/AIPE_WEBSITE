@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Orbitron&family=Tilt+Prism&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <title>AIPE NFT | Prompts</title>
+    <script>
+        window.onload = function () {
+            const promptTypeSelect = document.getElementById("prompt-type");
+            const promptListSelect = document.getElementById("prompt-list");
+            const selectedPrompt = document.getElementById("selected-prompt");
+            const promptTitle = document.getElementById("prompt-title");
+            const promptContent = document.getElementById("prompt-content");
+
+            promptTypeSelect.addEventListener("change", function () {
+                const selectedType = this.value;
+                promptListSelect.innerHTML = ""; // Clear the prompt list
+
+                if (selectedType === "chatgpt") {
+                    fetch("chatgpt-prompts.json")
+                        .then((response) => response.json())
+                        .then((data) => {
+                            const chatgptPrompts = data.prompts;
+
+                            chatgptPrompts.forEach((prompt) => {
+                                const option = document.createElement("option");
+                                option.textContent = prompt.title;
+                                option.value = prompt.title;
+                                option.dataset.title = prompt.title;
+                                option.dataset.content = prompt.content;
+                                promptListSelect.appendChild(option);
+                            });
+                        })
+                        .catch((error) => {
+                            console.log("Error retrieving ChatGPT prompts:", error);
+                        });
+                } else if (selectedType === "midjourney") {
+                    fetch("midjourney-prompts.json")
+                        .then((response) => response.json())
+                        .then((data) => {
+                            const midjourneyPrompts = data.prompts;
+
+                            midjourneyPrompts.forEach((prompt) => {
+                                const option = document.createElement("option");
+                                option.textContent = prompt.title;
+                                option.value = prompt.title;
+                                option.dataset.title = prompt.title;
+                                option.dataset.content = prompt.content;
+                                promptListSelect.appendChild(option);
+                            });
+                        })
+                        .catch((error) => {
+                            console.log("Error retrieving Mid Journey prompts:", error);
+                        });
+                }
+            });
+
+            promptListSelect.addEventListener("change", function () {
+                const selectedIndex = this.selectedIndex;
+                const selectedOption = this.options[selectedIndex];
+
+                promptTitle.textContent = selectedOption.dataset.title;
+                promptContent.textContent = selectedOption.dataset.content;
+
+                selectedPrompt.style.display = "block";
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <nav>
+        <img class="logo" src="/images/favicon.png" alt="">
+    </nav>
+    <h1>AIPE</h1>
+    <h3>Artificial. Intelligence. Prompt. Engineering.</h3>
+
+    <button id="connect-btn">Connect Wallet</button>
+    <button id="disconnect-btn" style="display: none;">Disconnect Wallet</button>
+    <p id="wallet-address" style="display: none;"></p>
+    <button id="check-nft-btn" style="display: none;">Access Prompts</button>
+
+    <main id="content-container" style="display: none;">
+
+
+        
+
+        <div class="instructions">
+            <p><b>ChatGPT:</b></p>
+            <p>For ChatGPT prompts simply copy and paste the prompt into ChatGPT.</p>
+            <p><b>Mid Journey:</b></p>
+            <p>For Mid Journey prompts copy and paste the prompt into Mid Journey.</p>
+            <p>Then replace the bracketed variables like [noun] with a suitable variable.</p>
+
+        </div>
+
+
+        <div><center>
+            <select id="prompt-type" class="scrollable-list">
+                <option value="chatgpt">ChatGPT Prompts</option>
+                <option value="midjourney">Mid Journey Prompts</option>
+            </select>
+        </center></div>
+
+
+        <div><center>
+            <select id="prompt-list" class="scrollable-list">
+                <option value="" disabled selected>Select A Prompt</option>
+            </select>
+        </center></div>
+
+        
+        <div id="selected-prompt" style="display: none;">
+            <div class="prompt-card">
+                <h2 id="prompt-title" class="prompt-title"></h2>
+                <p id="prompt-content" class="prompt-content"></p>
+            </div>
+        </div>
+
+        <button class="space"></button>
+
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+
+        <script>
+document.getElementById('connect-btn').addEventListener('click', connectWallet);
+document.getElementById('disconnect-btn').addEventListener('click', disconnectWallet);
+document.getElementById('check-nft-btn').addEventListener('click', checkNFTOwnership);
+
+async function connectWallet() {
+  if (window.ethereum) {
+    try {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const selectedAccount = accounts[0];
+      console.log('Connected to MetaMask account:', selectedAccount);
+      updateUI(selectedAccount);
+    } catch (error) {
+      console.error('Failed to connect the wallet:', error);
+      alert('Failed to connect the wallet. Please try again later.');
+    }
+  } else {
+    alert('No wallet provider detected. Please install MetaMask to connect your wallet.');
+  }
+
+  function updateUI(address) {
+    document.getElementById('connect-btn').style.display = 'none';
+    document.getElementById('disconnect-btn').style.display = 'block';
+    document.getElementById('wallet-address').textContent = 'Connected Wallet: ' + address;
+    document.getElementById('wallet-address').style.display = 'block';
+    document.getElementById('check-nft-btn').style.display = 'block';
+    document.getElementById('content-container').style.display = 'none'; // Hide the content container
+  }
+}
+
+function disconnectWallet() {
+  if (window.ethereum && window.ethereum.selectedAddress) {
+    window.ethereum.selectedAddress = null;
+    console.log('Wallet disconnected');
+    updateUI();
+  }
+
+  function updateUI() {
+    document.getElementById('disconnect-btn').style.display = 'none';
+    document.getElementById('connect-btn').style.display = 'block';
+    document.getElementById('wallet-address').style.display = 'none';
+    document.getElementById('check-nft-btn').style.display = 'none';
+    document.getElementById('content-container').style.display = 'none'; // Hide the content container
+  }
+}
+
+async function checkNFTOwnership() {
+  const contractAddress = '0x392e5F7918d31A84e4FF6e1DdCc4aA600378a295'; // Replace with the actual contract address
+  const contractABI = [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]; // Replace with the actual contract ABI
+
+  if (window.ethereum && window.ethereum.selectedAddress) {
+    try {
+      const web3 = new Web3(window.ethereum);
+      const contract = new web3.eth.Contract(contractABI, contractAddress);
+      const balance = await contract.methods.balanceOf(window.ethereum.selectedAddress).call();
+      if (balance > 0) {
+        console.log('User owns at least one NFT');
+        document.getElementById('content-container').style.display = 'block'; // Show the content container
+      } else {
+        console.log('User does not own any NFT');
+        alert('You do not own any NFT from the collection.');
+      }
+    } catch (error) {
+      console.error('Failed to check NFT ownership:', error);
+      alert('Failed to check NFT ownership. Please try again later.');
+    }
+  } else {
+    alert('Please connect your wallet first.');
+  }
+}
+
+
+
+
+
+fetch("chatgpt-prompts.json")
+    .then((response) => response.json())
+    .then((data) => {
+        const chatgptPrompts = data.prompts;
+        const chatgptPromptList = document.getElementById("chatgpt-prompt-list");
+
+        chatgptPrompts.forEach((prompt) => {
+            const option = document.createElement("option");
+            option.textContent = prompt.title;
+            option.value = prompt.title;
+            option.dataset.title = prompt.title;
+            option.dataset.content = prompt.content;
+            chatgptPromptList.appendChild(option);
+        });
+    })
+    .catch((error) => {
+        console.log("Error retrieving ChatGPT prompts:", error);
+    });
+
+fetch("midjourney-prompts.json")
+    .then((response) => response.json())
+    .then((data) => {
+        const midjourneyPrompts = data.prompts;
+        const midjourneyPromptList = document.getElementById("midjourney-prompt-list");
+
+        midjourneyPrompts.forEach((prompt) => {
+            const option = document.createElement("option");
+            option.textContent = prompt.title;
+            option.value = prompt.title;
+            option.dataset.title = prompt.title;
+            option.dataset.content = prompt.content;
+            midjourneyPromptList.appendChild(option);
+        });
+    })
+    .catch((error) => {
+        console.log("Error retrieving Mid Journey prompts:", error);
+    });
+
+        </script>
+    </main>
+</body>
+</html>
